@@ -10,12 +10,6 @@ namespace CoinFree.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private CoinFreeDbContext _context;
-        public HomeController()
-        {
-            _context = new CoinFreeDbContext();
-        }
-
         public ActionResult Index()
         {
             return View();
@@ -33,19 +27,6 @@ namespace CoinFree.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
-
-        [HttpGet]
-        public JsonResult GetUser()
-        {
-            var model = _context.Users.OrderByDescending(x=>x.UpdateDate);
-            int totalRow = _context.Users.Count();
-            return Json(new
-            {
-                data = model,
-                total = totalRow,
-                status = true
-            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

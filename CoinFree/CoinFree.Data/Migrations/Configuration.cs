@@ -20,7 +20,8 @@
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
             context.Users.AddOrUpdate(
-                new User { FullName = "Tiến Công", Email = "tiencong.com@gmail.com", UserID = "686868", WebAddress = "https://freebitco.in", CoinAddress = "1u24qFDvQ1VjPEBqZUjps1NJTaiUuomHw", CoinType = "BTC", CoinAarned = "0.00000001", ReferID = "797979", CreateDate = DateTime.Now, UpdateDate = DateTime.Now, Status = true }
+                new User { FullName = "Tiến Công", Email = "tiencong.com@gmail.com", UserID = "686868", WebAddress = "https://freebitco.in", CoinAddress = "1u24qFDvQ1VjPEBqZUjps1NJTaiUuomHw", CoinType = "BTC", CoinAarned = "0.00000001", ReferID = "797979", CreateDate = DateTime.Now, UpdateDate = DateTime.Now, Status = true },
+                new User { FullName = "Tròn", Email = "mantron242@gmail.com", UserID = "123456", WebAddress = "https://freebitco.in", CoinAddress = "1u24qFDvQ1VjPEBqZUjps1NJTaiUuomHw", CoinType = "BTC", CoinAarned = "0.00000001", ReferID = "797979", CreateDate = DateTime.Now, UpdateDate = DateTime.Now, Status = true }
             );
             context.SaveChanges();
         }
