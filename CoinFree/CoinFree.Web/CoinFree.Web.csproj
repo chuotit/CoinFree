@@ -158,6 +158,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,6 +169,11 @@
   <ItemGroup>
     <Content Include="Content\all-styles.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\demo-file\combined1426453789.css" />
+    <Content Include="Content\demo-file\dark-bottom.css" />
+    <Content Include="Content\demo-file\font-awesome.min.css" />
+    <Content Include="Content\demo-file\logout.png" />
+    <Content Include="Content\demo-file\main1512582355.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -209,8 +215,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\demo-file\chart" />
+    <Content Include="Content\demo-file\css" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Demo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoinFree.Data\CoinFree.Data.csproj">
