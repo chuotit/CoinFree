@@ -184,6 +184,7 @@
     <Content Include="Content\style.min.css">
       <DependentUpon>style.css</DependentUpon>
     </Content>
+    <Content Include="Content\tamper-template.js" />
     <Content Include="Content\view.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
