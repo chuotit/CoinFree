@@ -36,9 +36,22 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.4\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,7 +65,28 @@
     <Compile Include="Migrations\201804111745202_CreateDB.Designer.cs">
       <DependentUpon>201804111745202_CreateDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804211335098_AddPayoutTable.cs" />
+    <Compile Include="Migrations\201804211335098_AddPayoutTable.Designer.cs">
+      <DependentUpon>201804211335098_AddPayoutTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804211338037_UpdatePayoutTable.cs" />
+    <Compile Include="Migrations\201804211338037_UpdatePayoutTable.Designer.cs">
+      <DependentUpon>201804211338037_UpdatePayoutTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804211340117_UpdatePayoutTable2.cs" />
+    <Compile Include="Migrations\201804211340117_UpdatePayoutTable2.Designer.cs">
+      <DependentUpon>201804211340117_UpdatePayoutTable2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804211524584_UpdatePayoutTable3.cs" />
+    <Compile Include="Migrations\201804211524584_UpdatePayoutTable3.Designer.cs">
+      <DependentUpon>201804211524584_UpdatePayoutTable3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804211544459_UpdatePayoutTable4.cs" />
+    <Compile Include="Migrations\201804211544459_UpdatePayoutTable4.Designer.cs">
+      <DependentUpon>201804211544459_UpdatePayoutTable4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Payout.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +97,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804111745202_CreateDB.resx">
       <DependentUpon>201804111745202_CreateDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804211335098_AddPayoutTable.resx">
+      <DependentUpon>201804211335098_AddPayoutTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804211338037_UpdatePayoutTable.resx">
+      <DependentUpon>201804211338037_UpdatePayoutTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804211340117_UpdatePayoutTable2.resx">
+      <DependentUpon>201804211340117_UpdatePayoutTable2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804211524584_UpdatePayoutTable3.resx">
+      <DependentUpon>201804211524584_UpdatePayoutTable3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804211544459_UpdatePayoutTable4.resx">
+      <DependentUpon>201804211544459_UpdatePayoutTable4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

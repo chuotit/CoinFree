@@ -1,0 +1,392 @@
+#double_your_btc_main_container {
+    position: relative;
+    .back-drop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.clear {
+    clear: both;
+}
+
+body {
+    min-height: 800px;
+}
+
+.pro-bet-btc {
+    background: #ff0 !important;
+    color: #000 !important;
+}
+.red-color {
+    color: #f00;
+    font-weight: bold !important;
+}
+
+.green-color {
+    color: #008000;
+    font-weight: bold !important;
+}
+
+.pro-bet {
+    position: fixed;
+    right: 0;
+    top: 55px;
+    left: 0;
+    width: 870px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: 200px;
+    padding: 5px;
+    z-index: 100;
+    color: #000;
+    box-shadow: 0px 1px 15px #555;
+
+    * {
+        margin-bottom: 0 !important;
+        list-style: none;
+    }
+
+    .close {
+        position: absolute;
+        top: 0;
+        right: -42px;
+        width: 40px;
+    }
+
+    .setting-content {
+        position: relative;
+        border-bottom: 1px solid #aaa;
+    }
+
+    .left-content {
+        margin-right: 150px;
+    }
+
+    .controls {
+        position: absolute;
+        top: auto;
+        left: auto;
+        right: 0;
+        bottom: 6px;
+        height: 36px;
+        width: 145px;
+    }
+
+    .game-mode {
+        height: 30px;
+        margin-bottom: 10px !important;
+
+        .game-mode-list {
+            font-size: 0;
+            background: #eee;
+            display: inline-block;
+
+            .mode-item {
+                display: inline-block;
+                line-height: 30px;
+                position: relative;
+                border-top: 3px solid #eee;
+
+                &.active {
+                    border-top-color: #0079c1;
+                    background: #fff;
+                }
+
+                a {
+                    display: block;
+                    font-size: 12px;
+                    padding: 0 30px;
+                    font-weight: bold;
+                    color: #666;
+                }
+            }
+        }
+    }
+
+    .right-content {
+        position: absolute;
+        top: 6px;
+        left: auto;
+        right: 0;
+        height: 225px;
+        overflow: auto;
+        width: 145px;
+
+        .timeline-list {
+            li {
+                position: relative;
+                margin: 0;
+                height: 32px;
+
+                &.unknown-list {
+                    height: auto !important;
+                    text-align: center;
+                    border: 1px solid #ccc;
+                    margin-top: 10px !important;
+                }
+
+                .bet-number {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    width: 27px;
+                    background: #607d8b;
+                    color: #fff;
+                    font-size: 12px;
+                    text-align: center;
+                    line-height: 26px;
+                    height: 26px;
+                }
+
+                .btc-bet {
+                    margin-left: 34px;
+                    font-size: 12px;
+                    line-height: 14px;
+                    font-weight: normal;
+                    color: #f00;
+                    opacity: .7;
+                }
+
+                .btc-win {
+                    margin-left: 30px;
+                    font-size: 12px;
+                    line-height: 14px;
+                    font-weight: normal;
+                    color: #008000;
+                    opacity: .7;
+
+                    &.positive {
+                        margin-left: 34px;
+                    }
+                }
+
+                &.active {
+                    .bet-number {
+                        position: absolute;
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
+
+                    .btc-bet,
+                    .btc-win {
+                        opacity: 1;
+                        font-size: 15px;
+                        font-weight: bold;
+                    }
+
+                    & + li {
+                        .btc-bet,
+                        .btc-win {
+                            opacity: .8;
+                            font-size: 14px;
+                            font-weight: bold;
+                        }
+
+                        & + li {
+                            .btc-bet,
+                            .btc-win {
+                                opacity: .9;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .row {
+        margin-left: -3px !important;
+        margin-right: -3px !important;
+        width: auto !important;
+
+        .column,
+        .columns {
+            padding-left: 3px !important;
+            padding-right: 3px !important;
+        }
+    }
+
+    fieldset {
+        background: #fff;
+        min-width: auto;
+        padding: 5px 5px 0 5px;
+        margin: 0 0 5px 0 !important;
+        border: 1px solid #aaa;
+        border-radius: 3px;
+
+        legend {
+            font-weight: bold;
+            padding: 0px;
+            margin: 0;
+            margin-left: 5px;
+            font-size: 14px;
+        }
+    }
+
+    label {
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 18px;
+
+        &.title {
+            font-weight: bold;
+        }
+    }
+
+    span {
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    button {
+        width: 100%;
+        padding: 0;
+        min-height: 35px;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        line-height: 35px;
+        font-weight: bold;
+
+        &.active, &.active:hover {
+            background-color: #dc9d0e;
+            border: 1px solid #c38b0c;
+        }
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="month"],
+    input[type="week"],
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="time"],
+    input[type="url"],
+    textarea {
+        font-size: 13px;
+        margin: 0;
+        padding: 5px;
+        height: 22px;
+        line-height: 23px;
+    }
+
+    .group {
+        margin-bottom: 5px !important;
+    }
+
+    .ul-list {
+        font-size: 0;
+
+        li {
+            display: inline-block;
+            font-size: 13px;
+            margin-right: 9px;
+        }
+    }
+
+    .btc-display {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .chart-general {
+        margin-top: 20px;
+        text-align: center;
+
+        .general-list {
+            display: inline;
+            vertical-align: bottom;
+            font-size: 0;
+
+            .general-item {
+                display: inline-block;
+                width: 13px;
+                position: relative;
+
+                &.first-child {
+                    margin-left: 0;
+                }
+
+                &.lose-item {
+                    background: #f9c9ce;
+                    border: 1px solid #df9da4;
+                }
+
+                &.win-item {
+                    background: #cbeadb;
+                    border: 1px solid #a7dbc2;
+                }
+
+                span {
+                    display: block;
+                    position: absolute;
+                    top: -16px;
+                    font-weight: bold;
+                    font-size: 10px;
+                    text-align: center;
+                    left: -1px;
+                    right: -1px;
+                }
+            }
+        }
+    }
+
+    .tools-info {
+        height: 48px;
+        position: relative;
+
+        .marquee-area {
+            height: 24px;
+            line-height: 24px;
+            font-size: 14px;
+            color: #000;
+
+            .tool-name {
+                color: #f00;
+                font-weight: bold !important;
+                font-size: 14px !important;
+            }
+
+            .author {
+                color: #e29812;
+                font-weight: bold !important;
+                font-size: 14px !important;
+            }
+        }
+
+        .hot-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 24px;
+            line-height: 30px !important;
+            color: #f00;
+            font-weight: bold !important;
+            font-size: 16px !important;
+        }
+
+        .version {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 24px;
+            line-height: 30px !important;
+            color: #13637b;
+            font-weight: bold !important;
+            font-size: 11px !important;
+        }
+    }
+}
