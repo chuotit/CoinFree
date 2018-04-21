@@ -16,5 +16,6 @@ namespace CoinFree.Data
         }
 
         public DbSet<User> Users { set; get; }
+        public DbSet<Payout> Payouts { set; get; }
     }
 }

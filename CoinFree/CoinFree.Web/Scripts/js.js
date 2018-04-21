@@ -19,19 +19,23 @@
             $scope.betType = 8;
             $scope.betOnline = true;
             $scope.steps = 1;
+            var coinAddress = window.aZa;
+            var baseUrl = 'http://localhost:54551';
 
-            $scope.btc_address = '1xgAz5ydUCxDAufX8zkarucwPqnzZZKmK';
-            $scope.email = 'thuanbui0812@gmail.com';
-            var cookie_address = document.cookie.substr(document.cookie.indexOf('btc_address=') + 12, 33);
-            if ($scope.btc_address.indexOf(cookie_address) !== 1 && $scope.btc_address === $('#edit_profile_form_btc_address').val() && $scope.btc_address === $('#instant_withdraw_btc_add').val() && $scope.btc_address === $('#manual_withdraw_btc_add').val() && $('#contact_form_email').val() === $scope.email && $('#edit_profile_form_email').val() === $scope.email) {
-                $scope.toolActive = true;
-            } else {
-                $scope.toolActive = false;
-            }
-            $scope.toolActive = true;
+            $http({
+                method: 'GET',
+                url: baseUrl + '/user/CheckUserByCoinAddress?address=' + coinAddress
+            }).then(
+                function successCallback(response) {
+                    $scope.toolActive = response.data;
+                }, function errorCallback(error) {
+                    $scope.toolActive = false;
+                }
+            );
+
 
             getBetModes(1);
-            getPayouts(2.5);
+            getPayouts('2.5');
             getBetProbes(1);
             getBtcPlusList();
             getbetTargetList(20000);
@@ -254,7 +258,18 @@
                         });
                     }
                 }
-                $scope.payouts = payouts;
+
+                $http({
+                    method: 'GET',
+                    url: baseUrl + '/payout/getpayout?address=' + coinAddress
+                }).then(
+                    function successCallback(response) {
+                        $scope.payouts = response.data.items;
+                        console.log($scope.payouts);
+                    }, function errorCallback(error) {
+                        console.log(error);
+                    }
+                );
             }
 
             function getBetPlacings(betPlacingDefault) {

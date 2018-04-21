@@ -1,14 +1,13 @@
-﻿#double_your_btc_main_container {
+#double_your_btc_main_container {
     position: relative;
-}
-
-    #double_your_btc_main_container .back-drop {
+    .back-drop {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
     }
+}
 
 .clear {
     clear: both;
@@ -22,7 +21,6 @@ body {
     background: #ff0 !important;
     color: #000 !important;
 }
-
 .red-color {
     color: #f00;
     font-weight: bold !important;
@@ -46,30 +44,29 @@ body {
     z-index: 100;
     color: #000;
     box-shadow: 0px 1px 15px #555;
-}
 
-    .pro-bet * {
+    * {
         margin-bottom: 0 !important;
         list-style: none;
     }
 
-    .pro-bet .close {
+    .close {
         position: absolute;
         top: 0;
         right: -42px;
         width: 40px;
     }
 
-    .pro-bet .setting-content {
+    .setting-content {
         position: relative;
         border-bottom: 1px solid #aaa;
     }
 
-    .pro-bet .left-content {
+    .left-content {
         margin-right: 150px;
     }
 
-    .pro-bet .controls {
+    .controls {
         position: absolute;
         top: auto;
         left: auto;
@@ -79,7 +76,38 @@ body {
         width: 145px;
     }
 
-    .pro-bet .right-content {
+    .game-mode {
+        height: 30px;
+        margin-bottom: 10px !important;
+
+        .game-mode-list {
+            font-size: 0;
+            background: #eee;
+            display: inline-block;
+
+            .mode-item {
+                display: inline-block;
+                line-height: 30px;
+                position: relative;
+                border-top: 3px solid #eee;
+
+                &.active {
+                    border-top-color: #0079c1;
+                    background: #fff;
+                }
+
+                a {
+                    display: block;
+                    font-size: 12px;
+                    padding: 0 30px;
+                    font-weight: bold;
+                    color: #666;
+                }
+            }
+        }
+    }
+
+    .right-content {
         position: absolute;
         top: 6px;
         left: auto;
@@ -87,129 +115,137 @@ body {
         height: 225px;
         overflow: auto;
         width: 145px;
-    }
 
-        .pro-bet .right-content .timeline-list li {
-            position: relative;
-            margin: 0;
-            height: 32px;
-        }
+        .timeline-list {
+            li {
+                position: relative;
+                margin: 0;
+                height: 32px;
 
-            .pro-bet .right-content .timeline-list li.unknown-list {
-                height: auto !important;
-                text-align: center;
-                border: 1px solid #ccc;
-                margin-top: 10px !important;
-            }
-
-            .pro-bet .right-content .timeline-list li .bet-number {
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                width: 27px;
-                background: #607d8b;
-                color: #fff;
-                font-size: 12px;
-                text-align: center;
-                line-height: 26px;
-                height: 26px;
-            }
-
-            .pro-bet .right-content .timeline-list li .btc-bet {
-                margin-left: 34px;
-                font-size: 12px;
-                line-height: 14px;
-                font-weight: normal;
-                color: #f00;
-                opacity: .7;
-            }
-
-            .pro-bet .right-content .timeline-list li .btc-win {
-                margin-left: 30px;
-                font-size: 12px;
-                line-height: 14px;
-                font-weight: normal;
-                color: #008000;
-                opacity: .7;
-            }
-
-                .pro-bet .right-content .timeline-list li .btc-win.positive {
-                    margin-left: 34px;
+                &.unknown-list {
+                    height: auto !important;
+                    text-align: center;
+                    border: 1px solid #ccc;
+                    margin-top: 10px !important;
                 }
 
-            .pro-bet .right-content .timeline-list li.active .bet-number {
-                position: absolute;
-                font-size: 14px;
-                font-weight: bold;
-            }
+                .bet-number {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    width: 27px;
+                    background: #607d8b;
+                    color: #fff;
+                    font-size: 12px;
+                    text-align: center;
+                    line-height: 26px;
+                    height: 26px;
+                }
 
-            .pro-bet .right-content .timeline-list li.active .btc-bet,
-            .pro-bet .right-content .timeline-list li.active .btc-win {
-                opacity: 1;
-                font-size: 15px;
-                font-weight: bold;
-            }
+                .btc-bet {
+                    margin-left: 34px;
+                    font-size: 12px;
+                    line-height: 14px;
+                    font-weight: normal;
+                    color: #f00;
+                    opacity: .7;
+                }
 
-            .pro-bet .right-content .timeline-list li.active + li .btc-bet,
-            .pro-bet .right-content .timeline-list li.active + li .btc-win {
-                opacity: .8;
-                font-size: 14px;
-                font-weight: bold;
-            }
+                .btc-win {
+                    margin-left: 30px;
+                    font-size: 12px;
+                    line-height: 14px;
+                    font-weight: normal;
+                    color: #008000;
+                    opacity: .7;
 
-            .pro-bet .right-content .timeline-list li.active + li + li .btc-bet,
-            .pro-bet .right-content .timeline-list li.active + li + li .btc-win {
-                opacity: .9;
-                font-size: 13px;
-            }
+                    &.positive {
+                        margin-left: 34px;
+                    }
+                }
 
-    .pro-bet .row {
+                &.active {
+                    .bet-number {
+                        position: absolute;
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
+
+                    .btc-bet,
+                    .btc-win {
+                        opacity: 1;
+                        font-size: 15px;
+                        font-weight: bold;
+                    }
+
+                    & + li {
+                        .btc-bet,
+                        .btc-win {
+                            opacity: .8;
+                            font-size: 14px;
+                            font-weight: bold;
+                        }
+
+                        & + li {
+                            .btc-bet,
+                            .btc-win {
+                                opacity: .9;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .row {
         margin-left: -3px !important;
         margin-right: -3px !important;
         width: auto !important;
-    }
 
-        .pro-bet .row .column,
-        .pro-bet .row .columns {
+        .column,
+        .columns {
             padding-left: 3px !important;
             padding-right: 3px !important;
         }
+    }
 
-    .pro-bet fieldset {
+    fieldset {
         background: #fff;
         min-width: auto;
         padding: 5px 5px 0 5px;
         margin: 0 0 5px 0 !important;
         border: 1px solid #aaa;
         border-radius: 3px;
-    }
 
-        .pro-bet fieldset legend {
+        legend {
             font-weight: bold;
             padding: 0px;
             margin: 0;
             margin-left: 5px;
             font-size: 14px;
         }
+    }
 
-    .pro-bet label {
+    label {
         font-weight: normal;
         font-size: 13px;
         line-height: 18px;
-    }
 
-        .pro-bet label.title {
+        &.title {
             font-weight: bold;
         }
+    }
 
-    .pro-bet span {
+    span {
         font-weight: normal;
         font-size: 12px;
         line-height: 18px;
     }
 
-    .pro-bet button {
+    button {
         width: 100%;
         padding: 0;
         min-height: 35px;
@@ -219,27 +255,27 @@ body {
         text-align: center;
         line-height: 35px;
         font-weight: bold;
-    }
 
-        .pro-bet button.active, .pro-bet button.active:hover {
+        &.active, &.active:hover {
             background-color: #dc9d0e;
             border: 1px solid #c38b0c;
         }
+    }
 
-    .pro-bet input[type="text"],
-    .pro-bet input[type="password"],
-    .pro-bet input[type="date"],
-    .pro-bet input[type="datetime"],
-    .pro-bet input[type="datetime-local"],
-    .pro-bet input[type="month"],
-    .pro-bet input[type="week"],
-    .pro-bet input[type="email"],
-    .pro-bet input[type="number"],
-    .pro-bet input[type="search"],
-    .pro-bet input[type="tel"],
-    .pro-bet input[type="time"],
-    .pro-bet input[type="url"],
-    .pro-bet textarea {
+    input[type="text"],
+    input[type="password"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="month"],
+    input[type="week"],
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="time"],
+    input[type="url"],
+    textarea {
         font-size: 13px;
         margin: 0;
         padding: 5px;
@@ -247,57 +283,54 @@ body {
         line-height: 23px;
     }
 
-    .pro-bet .group {
+    .group {
         margin-bottom: 5px !important;
     }
 
-    .pro-bet .ul-list {
+    .ul-list {
         font-size: 0;
-    }
 
-        .pro-bet .ul-list li {
+        li {
             display: inline-block;
             font-size: 13px;
             margin-right: 9px;
         }
+    }
 
-    .pro-bet .btc-display {
+    .btc-display {
         font-size: 13px;
         font-weight: bold;
     }
 
-    .pro-bet .chart-general {
+    .chart-general {
         margin-top: 20px;
         text-align: center;
-    }
 
-        .pro-bet .chart-general .general-list {
+        .general-list {
             display: inline;
             vertical-align: bottom;
             font-size: 0;
-        }
 
-            .pro-bet .chart-general .general-list .general-item {
+            .general-item {
                 display: inline-block;
                 width: 13px;
                 position: relative;
-            }
 
-                .pro-bet .chart-general .general-list .general-item.first-child {
+                &.first-child {
                     margin-left: 0;
                 }
 
-                .pro-bet .chart-general .general-list .general-item.lose-item {
+                &.lose-item {
                     background: #f9c9ce;
                     border: 1px solid #df9da4;
                 }
 
-                .pro-bet .chart-general .general-list .general-item.win-item {
+                &.win-item {
                     background: #cbeadb;
                     border: 1px solid #a7dbc2;
                 }
 
-                .pro-bet .chart-general .general-list .general-item span {
+                span {
                     display: block;
                     position: absolute;
                     top: -16px;
@@ -307,32 +340,34 @@ body {
                     left: -1px;
                     right: -1px;
                 }
-
-    .pro-bet .tools-info {
-        height: 48px;
-        position: relative;
+            }
+        }
     }
 
-        .pro-bet .tools-info .marquee-area {
+    .tools-info {
+        height: 48px;
+        position: relative;
+
+        .marquee-area {
             height: 24px;
             line-height: 24px;
             font-size: 14px;
             color: #000;
-        }
 
-            .pro-bet .tools-info .marquee-area .tool-name {
+            .tool-name {
                 color: #f00;
                 font-weight: bold !important;
                 font-size: 14px !important;
             }
 
-            .pro-bet .tools-info .marquee-area .author {
+            .author {
                 color: #e29812;
                 font-weight: bold !important;
                 font-size: 14px !important;
             }
+        }
 
-        .pro-bet .tools-info .hot-line {
+        .hot-line {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -343,7 +378,7 @@ body {
             font-size: 16px !important;
         }
 
-        .pro-bet .tools-info .version {
+        .version {
             position: absolute;
             bottom: 0;
             right: 0;
@@ -353,3 +388,5 @@ body {
             font-weight: bold !important;
             font-size: 11px !important;
         }
+    }
+}

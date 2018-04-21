@@ -39,8 +39,37 @@ namespace CoinFree.Web.Controllers
             var user = _context.Users.Where(x => x.UserID == userId);
             return Json(new
             {
-                data = user
+                user
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult CheckUserByEmail(string email)
+        {
+            var status = false;
+            if (_context.Users.Where(x => x.Email == email).Count() == 1)
+            {
+                status = true;
+            } else
+            {
+                status = false;
+            }
+            return Json(status, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult CheckUserByCoinAddress(string address)
+        {
+            var status = false;
+            if (_context.Users.Where(x => x.CoinAddress == address).Count() == 1)
+            {
+                status = true;
+            }
+            else
+            {
+                status = false;
+            }
+            return Json(status, JsonRequestBehavior.AllowGet);
         }
     }
 }
