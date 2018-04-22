@@ -265,7 +265,6 @@
                 }).then(
                     function successCallback(response) {
                         $scope.payouts = response.data.items;
-                        console.log($scope.payouts);
                     }, function errorCallback(error) {
                         console.log(error);
                     }
@@ -431,7 +430,8 @@
 
                 do {
                     index++;
-                    btcWin = subBTC(multiBTC(btcBet, $scope.payout - 1), btcLose);
+                    btcWin = multiBTC(btcBet, $scope.payout - 1);
+                    btcInterest = subBTC(multiBTC(btcBet, $scope.payout - 1), btcLose);
                     btcLose = sumBTC(btcLose, btcBet);
                     btcRemain = subBTC(btcRemain, btcBet);
 
@@ -440,6 +440,7 @@
                         btcBet: btcBet,
                         btcWin: btcWin,
                         btcLose: btcLose,
+                        btcInterest: btcInterest,
                         btcRemain: btcRemain
                     };
                     if (btcBet < 0.00000001) {
