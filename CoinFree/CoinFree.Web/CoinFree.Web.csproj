@@ -165,6 +165,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayoutController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserSettingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,7 +185,12 @@
     <Content Include="Content\style.min.css">
       <DependentUpon>style.css</DependentUpon>
     </Content>
+    <Content Include="Content\style1.css" />
+    <Content Include="Content\style1.min.css">
+      <DependentUpon>style1.css</DependentUpon>
+    </Content>
     <Content Include="Content\tamper-template.js" />
+    <Content Include="Content\view1.html" />
     <Content Include="Content\view.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -216,6 +222,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Payout\" />
+    <Folder Include="Views\UserSetting\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

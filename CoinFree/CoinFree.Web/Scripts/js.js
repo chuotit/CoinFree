@@ -32,17 +32,18 @@
                     $scope.toolActive = false;
                 }
             );
+            $scope.toolActive = true;
 
 
             getBetModes(1);
             getPayouts('2.5');
-            getBetProbes(1);
+            getBetProbes();
             getBtcPlusList();
             getbetTargetList(20000);
             getPercentIncreases(100);
             getBetSpeeds(166);
             getBetAfterProbes(100);
-            getIncreaseWhenLosts(3);
+            getIncreaseWhenLosts();
             getBetPlacings(2);
 
             $scope.updateBetList = function (updateAllowed) {
@@ -64,7 +65,6 @@
             $scope.bigBetFlg = false;
             $('#balance').bind('DOMSubtreeModified', function (e) {
                 if ($(e.currentTarget).is(':contains(".")')) {
-                    // $scope.disabledButton = false;
                     $timeout(function () {
                         $scope.balance = $('#balance').text();
                         betButton = getBetButton($scope.betMode);
@@ -112,15 +112,15 @@
 
                                 if ($scope.betType === 8) {
                                     if ($scope.bigBetFlg === false && loseCount === 1) {
-                                        if ($scope.betProbe !== 0) {
+                                        if ($scope.userSetting.BetProbe !== 0) {
                                             var check = 0;
-                                            for (var i = 1; i <= $scope.betProbe; i++) {
+                                            for (var i = 1; i <= $scope.userSetting.BetProbe; i++) {
                                                 if ((generalList[(generalList.length - i * 2)] ? generalList[(generalList.length - i * 2)].value : 0) >= $scope.betPlacing) {
                                                     check++;
                                                 }
                                             }
 
-                                            if (check === $scope.betProbe) {
+                                            if (check === $scope.userSetting.BetProbe) {
                                                 $scope.bigBetFlg = true;
                                             }
                                         } else {
@@ -173,44 +173,40 @@
                 $scope.onBetting = false;
                 $scope.disabledButton = false;
             };
-
-            $scope.changPayout = function (payout) {
+            $scope.changePayout = changePayout;
+            function changePayout(payout) {
                 $scope.payout = payout;
-                $scope.increaseWhenLost = 1;
-                switch (payout) {
-                    case 1.5:
-                        $scope.betProbe = 2;
-                        $scope.btcPlus = '0.00000100';
-                        $scope.percentIncrease = 250;
-                        $scope.betPlacing = 2;
-                        break;
-                    case 2:
-                        $scope.betProbe = 2;
-                        $scope.btcPlus = '0.00000050';
-                        $scope.percentIncrease = 150;
-                        $scope.betPlacing = 2;
-                        break;
-                    case 2.5:
-                        $scope.betProbe = 2;
-                        $scope.btcPlus = '0.00000050';
-                        $scope.percentIncrease = 70;
-                        $scope.betPlacing = 2;
-                        break;
-                    case 10:
-                        $scope.betProbe = 4;
-                        $scope.btcPlus = '0.00000020';
-                        $scope.increaseWhenLost = 3;
-                        $scope.percentIncrease = 70;
-                        $scope.betPlacing = 4;
-                        break;
-                }
-                $scope.betList = updateBetList(0);
-                $scope.betAllowed = $scope.betList.slice(-1)[0];
-                $scope.betLoseAllowed = $scope.betList.slice(-2)[0].index;
-                $scope.btcLoseAllowed = $scope.betList[$scope.betLoseAllowed - 1].btcLose;
-                $scope.btcRemain = $scope.betList[$scope.betLoseAllowed - 1].btcRemain;
+                $http({
+                    method: 'GET',
+                    url: baseUrl + '/UserSetting/GetSetting/?gameType=base&payout=' + payout + '&coinAddress=' + coinAddress
+                }).then(
+                        function successCallback(response) {
+                            $scope.userSetting = response.data.userSetting[0];
+                            $scope.betList = updateBetList(0);
+                            $scope.betAllowed = $scope.betList.slice(-1)[0];
+                            $scope.betLoseAllowed = $scope.betList.slice(-2)[0].index;
+                            $scope.btcLoseAllowed = $scope.betList[$scope.betLoseAllowed - 1].btcLose;
+                            $scope.btcRemain = $scope.betList[$scope.betLoseAllowed - 1].btcRemain;
+                            console.log($scope.userSetting);
+                        //$scope.userSetting = {
+                        //    betProbe = 2,
+                        //    btcPlus = '0.00000100',
+                        //    increaseWhenLost = 1,
+                        //    percentIncrease = 250,
+                        //    betPlacing = 2
+                        //}
+
+                        //$scope.userSetting.BetProbe = 2;
+                        //$scope.userSetting.BtcPlus = '0.00000100';
+                        //$scope.userSetting.IncreaseWhenLost = 1;
+                        //$scope.userSetting.PercentIncrease = 250;
+                        //$scope.betPlacing = 2;
+
+                        }, function errorCallback(error) {
+                            console.log(error);
+                    }
+                );
             };
-            $scope.changPayout(2.5);
 
             function getBetModes(betModeDefault) {
                 $scope.betMode = betModeDefault;
@@ -241,35 +237,17 @@
             }
 
             function getPayouts(payoutDefault) {
-                $scope.payout = payoutDefault;
-                var payouts = [];
-                for (i = 2; i <= 20; i++) {
-                    if (i === 2) {
-                        payouts.push({
-                            value: 1.5
-                        }, {
-                                value: i
-                            }, {
-                                value: 2.5
-                            });
-                    } else {
-                        payouts.push({
-                            value: i
-                        });
-                    }
-                }
-
                 $http({
                     method: 'GET',
-                    url: baseUrl + '/payout/getpayout?address=' + coinAddress
+                    url: baseUrl + '/UserSetting/GetPayout/?gameType=base&coinAddress=' + coinAddress
                 }).then(
                     function successCallback(response) {
-                        $scope.payouts = response.data.items;
-                        console.log($scope.payouts);
+                        $scope.payouts = response.data.payoutList;
                     }, function errorCallback(error) {
                         console.log(error);
                     }
                 );
+                changePayout(payoutDefault);
             }
 
             function getBetPlacings(betPlacingDefault) {
@@ -283,8 +261,7 @@
                 $scope.betPlacings = betPlacings;
             }
 
-            function getBetProbes(betProbeDefault) {
-                $scope.betProbe = betProbeDefault;
+            function getBetProbes() {
                 var betProbes = [];
                 for (i = 0; i <= 100; i++) {
                     betProbes.push({
@@ -294,8 +271,7 @@
                 $scope.betProbes = betProbes;
             }
 
-            function getIncreaseWhenLosts(increaseWhenLost) {
-                $scope.increaseWhenLost = increaseWhenLost;
+            function getIncreaseWhenLosts() {
                 var increaseWhenLosts = [];
                 for (i = 0; i <= 100; i++) {
                     increaseWhenLosts.push({
@@ -366,8 +342,7 @@
                 $scope.betTargetList = betTargetList;
             }
 
-            function getPercentIncreases(percentIncreaseDefault) {
-                $scope.percentIncrease = percentIncreaseDefault;
+            function getPercentIncreases() {
                 var percentIncreases = [];
                 for (i = 1; i <= 300; i++) {
                     percentIncreases.push({
@@ -422,7 +397,7 @@
             }
 
             function updateBetList(position) {
-                var btcBet = $scope.payout <= 2.5 ? $scope.btcPlus : $scope.btcPlus;
+                var btcBet = $scope.payout <= 2.5 ? $scope.userSetting.BtcPlus : $scope.userSetting.BtcPlus;
                 var index = 0,
                     btcWin = 0,
                     btcLose = 0,
@@ -431,7 +406,8 @@
 
                 do {
                     index++;
-                    btcWin = subBTC(multiBTC(btcBet, $scope.payout - 1), btcLose);
+                    btcWin = multiBTC(btcBet, $scope.payout - 1);
+                    btcInterest = subBTC(multiBTC(btcBet, $scope.payout - 1), btcLose);
                     btcLose = sumBTC(btcLose, btcBet);
                     btcRemain = subBTC(btcRemain, btcBet);
 
@@ -440,6 +416,7 @@
                         btcBet: btcBet,
                         btcWin: btcWin,
                         btcLose: btcLose,
+                        btcInterest: btcInterest,
                         btcRemain: btcRemain
                     };
                     if (btcBet < 0.00000001) {
@@ -460,12 +437,12 @@
 
             function getBtcBet(index, btcPrevBet, btcLose) {
                 if ($scope.payout <= 2.5) {
-                    return (btcPrevBet * getPercent($scope.percentIncrease)).toFixed(8);
+                    return (btcPrevBet * getPercent($scope.userSetting.PercentIncrease)).toFixed(8);
                 } else if ($scope.payout === 10) {
                     var btcBet = btcPrevBet;
-                    // if (index > $scope.increaseWhenLost && (index % $scope.increaseWhenLost === $scope.betProbe % $scope.increaseWhenLost)) {
-                    if (index % $scope.increaseWhenLost === 0) {
-                        btcBet = (btcPrevBet * getPercent($scope.percentIncrease)).toFixed(8);
+                    // if (index > $scope.userSetting.IncreaseWhenLost && (index % $scope.userSetting.IncreaseWhenLost === $scope.userSetting.BetProbe % $scope.userSetting.IncreaseWhenLost)) {
+                    if (index % $scope.userSetting.IncreaseWhenLost === 0) {
+                        btcBet = (btcPrevBet * getPercent($scope.userSetting.PercentIncrease)).toFixed(8);
                     }
                     // if ($scope.betAfterProbe && index >= $scope.betAfterProbe) {
                     //     btcBet = (btcLose / ($scope.payout - 1)).toFixed(8);
@@ -527,13 +504,13 @@
                 var betSpeed = $scope.betSpeeds[0].value;
                 if ($scope.betSpeedAuto) {
                     var maxBetIndex = $scope.betList.length;
-                    if (loseIndex <= $scope.betProbe) {
+                    if (loseIndex <= $scope.userSetting.BetProbe) {
                         betSpeed = $scope.betSpeeds[0].value;
-                    } else if (loseIndex <= (maxBetIndex - $scope.betProbe) / 3 + $scope.betProbe) {
+                    } else if (loseIndex <= (maxBetIndex - $scope.userSetting.BetProbe) / 3 + $scope.userSetting.BetProbe) {
                         betSpeed = $scope.betSpeeds[1].value;
-                    } else if (loseIndex <= (maxBetIndex - $scope.betProbe) / 2 + $scope.betProbe) {
+                    } else if (loseIndex <= (maxBetIndex - $scope.userSetting.BetProbe) / 2 + $scope.userSetting.BetProbe) {
                         betSpeed = $scope.betSpeeds[2].value;
-                    } else if (loseIndex <= (maxBetIndex - $scope.betProbe) / 1.5 + $scope.betProbe) {
+                    } else if (loseIndex <= (maxBetIndex - $scope.userSetting.BetProbe) / 1.5 + $scope.betProbe) {
                         betSpeed = $scope.betSpeeds[3].value;
                     } else {
                         betSpeed = $scope.betSpeeds[4].value;

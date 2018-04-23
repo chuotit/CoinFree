@@ -1,3 +1,4 @@
+$red-color: #ed6454 ;
 #double_your_btc_main_container {
     position: relative;
     .back-drop {
@@ -9,27 +10,40 @@
     }
 }
 
-.clear {
-    clear: both;
+button:hover, button:focus, .button:hover, .button:focus {
+    color: white;
+    outline: none;
+}
+button[disabled]:hover {
+    cursor: not-allowed;
+    opacity: .5;
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
 }
 
-body {
-    min-height: 800px;
-}
+    .clear {
+        clear: both;
+    }
 
-.pro-bet-btc {
-    background: #ff0 !important;
-    color: #000 !important;
-}
-.red-color {
-    color: #f00;
-    font-weight: bold !important;
-}
+    body {
+        min-height: 800px;
+    }
 
-.green-color {
-    color: #008000;
-    font-weight: bold !important;
-}
+    .pro-bet-btc {
+        background: #ff0 !important;
+        color: #000 !important;
+    }
+
+    .red-color {
+        color: $red-color;
+        font-weight: bold !important;
+    }
+
+    .green-color {
+        color: #008000;
+        font-weight: bold !important;
+    }
 
 .pro-bet {
     position: fixed;
@@ -62,38 +76,45 @@ body {
         border-bottom: 1px solid #aaa;
     }
 
-    .left-content {
-        margin-right: 150px;
-    }
-
     .controls {
-        position: absolute;
-        top: auto;
-        left: auto;
-        right: 0;
-        bottom: 6px;
-        height: 36px;
-        width: 145px;
+        button {
+            line-height: 43px;
+        }
     }
 
     .game-mode {
         height: 30px;
-        margin-bottom: 10px !important;
+        margin-bottom: 5px !important;
 
         .game-mode-list {
             font-size: 0;
-            background: #eee;
             display: inline-block;
 
             .mode-item {
                 display: inline-block;
                 line-height: 30px;
                 position: relative;
-                border-top: 3px solid #eee;
+                background: #ddd;
+                border-top: 3px solid #aaa;
+                border-top-right-radius: 3px;
+                border-top-left-radius: 3px;
+                margin-left: 1px;
+
+                &.disabled {
+                    a {
+                        &:hover {
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+
+                &:first-child {
+                    margin-left: 0;
+                }
 
                 &.active {
                     border-top-color: #0079c1;
-                    background: #fff;
+                    background: #f5f5f5;
                 }
 
                 a {
@@ -107,20 +128,92 @@ body {
         }
     }
 
+    .setting-list {
+        background: #f6f6f6;
+        padding: 5px;
+        margin-bottom: 5px !important;
+
+        .setting-item {
+            display: inline-block;
+            margin-left: 45px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+
+    .button-item {
+        display: inline-block;
+        width: 50px;
+        margin-left: 5px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+
     .right-content {
-        position: absolute;
-        top: 6px;
-        left: auto;
-        right: 0;
-        height: 225px;
-        overflow: auto;
-        width: 145px;
+        position: relative;
+        margin-top: 5px;
+
+        .content-head {
+            background: #ddd;
+            margin-bottom: 5px !important;
+            height: 20px;
+
+            .line-item {
+                font-weight: bold;
+            }
+        }
+
+        .line-item {
+            float: left;
+            font-size: 14px;
+            line-height: 20px;
+            height: 20px;
+            font-weight: normal;
+            text-align: right;
+            width: 100px;
+            border-left: 2px solid #fff;
+            padding: 0 5px;
+        }
+
+        .bet-number {
+            width: 23px;
+            background: #607d8b;
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+            line-height: 20px;
+            height: 20px;
+        }
+
+        .btc-bet {
+            color: $red-color;
+        }
+
+        .btc-win {
+            color: #008000;
+        }
+
+        .btc-total-win {
+            color: #008000;
+        }
 
         .timeline-list {
+            max-height: 193px;
+            overflow: auto;
+
             li {
                 position: relative;
-                margin: 0;
-                height: 32px;
+                margin-top: 3px !important;
+                background: #eee;
+                height: 20px;
+
+                &:first-child {
+                    margin-top: 0 !important;
+                }
 
                 &.unknown-list {
                     height: auto !important;
@@ -129,57 +222,17 @@ body {
                     margin-top: 10px !important;
                 }
 
-                .bet-number {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    bottom: 0;
-                    width: 27px;
-                    background: #607d8b;
-                    color: #fff;
-                    font-size: 12px;
-                    text-align: center;
-                    line-height: 26px;
-                    height: 26px;
-                }
-
-                .btc-bet {
-                    margin-left: 34px;
-                    font-size: 12px;
-                    line-height: 14px;
-                    font-weight: normal;
-                    color: #f00;
-                    opacity: .7;
-                }
-
-                .btc-win {
-                    margin-left: 30px;
-                    font-size: 12px;
-                    line-height: 14px;
-                    font-weight: normal;
-                    color: #008000;
-                    opacity: .7;
-
-                    &.positive {
-                        margin-left: 34px;
-                    }
-                }
-
                 &.active {
                     .bet-number {
-                        position: absolute;
-                        font-size: 14px;
                         font-weight: bold;
+                        background: $red-color;
                     }
 
                     .btc-bet,
                     .btc-win {
                         opacity: 1;
-                        font-size: 15px;
-                        font-weight: bold;
                     }
-
-                    & + li {
+                    /*& + li {
                         .btc-bet,
                         .btc-win {
                             opacity: .8;
@@ -194,7 +247,7 @@ body {
                                 font-size: 13px;
                             }
                         }
-                    }
+                    }*/
                 }
             }
         }
@@ -214,7 +267,7 @@ body {
 
     fieldset {
         background: #fff;
-        min-width: auto;
+        min-width: 0;
         padding: 5px 5px 0 5px;
         margin: 0 0 5px 0 !important;
         border: 1px solid #aaa;
@@ -233,9 +286,12 @@ body {
         font-weight: normal;
         font-size: 13px;
         line-height: 18px;
+        cursor: default;
 
         &.title {
             font-weight: bold;
+            margin-bottom: 5px !important;
+            display: block;
         }
     }
 
@@ -249,16 +305,23 @@ body {
         width: 100%;
         padding: 0;
         min-height: 35px;
-        border-radius: 3px;
-        color: #fff;
+        color: #ccc;
         font-size: 12px;
         text-align: center;
         line-height: 35px;
         font-weight: bold;
+        background: #3c4f63;
+        border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        -webkit-transition: none;
+        -moz-transition: none;
+        transition: none;
 
-        &.active, &.active:hover {
-            background-color: #dc9d0e;
-            border: 1px solid #c38b0c;
+        &:hover, &.active, &.active:hover {
+            background: $red-color;
+            opacity: 1;
+            color: #fff;
         }
     }
 
@@ -293,7 +356,11 @@ body {
         li {
             display: inline-block;
             font-size: 13px;
-            margin-right: 9px;
+            margin-left: 9px;
+
+            &:first-child {
+                margin-left: 0;
+            }
         }
     }
 
@@ -355,7 +422,7 @@ body {
             color: #000;
 
             .tool-name {
-                color: #f00;
+                color: $red-color;
                 font-weight: bold !important;
                 font-size: 14px !important;
             }
@@ -373,7 +440,7 @@ body {
             left: 0;
             height: 24px;
             line-height: 30px !important;
-            color: #f00;
+            color: $red-color;
             font-weight: bold !important;
             font-size: 16px !important;
         }
