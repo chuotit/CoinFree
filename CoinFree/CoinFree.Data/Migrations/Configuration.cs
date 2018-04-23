@@ -18,7 +18,27 @@
             //context.Payouts.AddOrUpdate(
             //    new Payout { Value = 1, Order = 1 }
             //    );
-            //context.SaveChanges();
+
+            context.UserSettings.AddOrUpdate(
+                new UserSetting
+                {
+                    Name = "Base_2.5",
+                    GameType = "base",
+                    Payout = 2.5,
+                    CoinAddress = "12FW6jacTgqoWfvxkhJXixo2JW5tTryWNk",
+                    BtcBetBase = "0.00000001",
+                    BetSpeed = "slow",
+                    BetMode = 1,
+                    BetProbe = 2,
+                    BtcPlus = "0.00000005",
+                    BetTarget = 2000,
+                    PercentIncreases = 1,
+                    CreateDate = DateTime.Now,
+                    UpdateDate = DateTime.Now,
+                    Status = true
+                }
+                );
+            context.SaveChanges();
         }
     }
 }

@@ -32,6 +32,7 @@
                     $scope.toolActive = false;
                 }
             );
+            $scope.toolActive = true;
 
 
             getBetModes(1);
@@ -64,7 +65,6 @@
             $scope.bigBetFlg = false;
             $('#balance').bind('DOMSubtreeModified', function (e) {
                 if ($(e.currentTarget).is(':contains(".")')) {
-                    // $scope.disabledButton = false;
                     $timeout(function () {
                         $scope.balance = $('#balance').text();
                         betButton = getBetButton($scope.betMode);

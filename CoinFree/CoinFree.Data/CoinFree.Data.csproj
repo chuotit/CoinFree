@@ -85,9 +85,18 @@
     <Compile Include="Migrations\201804211544459_UpdatePayoutTable4.Designer.cs">
       <DependentUpon>201804211544459_UpdatePayoutTable4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804231134028_AddUserSettingTable.cs" />
+    <Compile Include="Migrations\201804231134028_AddUserSettingTable.Designer.cs">
+      <DependentUpon>201804231134028_AddUserSettingTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804231151406_AddUserSettingTable2.cs" />
+    <Compile Include="Migrations\201804231151406_AddUserSettingTable2.Designer.cs">
+      <DependentUpon>201804231151406_AddUserSettingTable2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Payout.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +121,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804211544459_UpdatePayoutTable4.resx">
       <DependentUpon>201804211544459_UpdatePayoutTable4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804231134028_AddUserSettingTable.resx">
+      <DependentUpon>201804231134028_AddUserSettingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804231151406_AddUserSettingTable2.resx">
+      <DependentUpon>201804231151406_AddUserSettingTable2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
