@@ -24,7 +24,7 @@ namespace CoinFree.Web.Controllers
         [HttpGet]
         public JsonResult GetPayout (string gameType, string coinAddress)
         {
-            var payoutList = _context.UserSettings.Where(x=>x.GameType == gameType && x.CoinAddress ==coinAddress).Select(x=>x.Payout);
+            var payoutList = _context.UserSettings.Where(x=>x.GameType == gameType && x.CoinAddress == coinAddress).Select(x=>x.Payout);
             return Json(new
             {
                 payoutList

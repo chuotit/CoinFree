@@ -143,6 +143,16 @@ input:focus, textarea:focus, select:focus {
         }
     }
 
+    .button-item {
+        display: inline-block;
+        width: 50px;
+        margin-left: 5px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+
     .right-content {
         position: relative;
         margin-top: 5px;

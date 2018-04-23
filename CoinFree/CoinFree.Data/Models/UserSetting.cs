@@ -38,7 +38,11 @@ namespace CoinFree.Data.Models
 
         public int BetTarget { set; get; }
 
-        public int PercentIncreases { set; get; }
+        public int PercentIncrease { set; get; }
+
+        public int IncreaseWhenLost { set; get; }
+
+        public int WinLimit { set; get; }
 
         public DateTime CreateDate { set; get; }
 

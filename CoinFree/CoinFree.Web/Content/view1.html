@@ -4,7 +4,7 @@
         <div class="game-mode">
             <ul class="game-mode-list">
                 <li class="mode-item active"><a>Bet cơ bản</a></li>
-                <li class="mode-item disabled"><a>Bet Pro 2</a></li>
+                <li class="mode-item disabled"><a>Bet Pro 22222</a></li>
             </ul>
         </div>
         <div class="clear"></div>
@@ -52,11 +52,11 @@
                     <fieldset>
                         <legend>Payout cơ bản:</legend>
                         <div class="group">
-                            <div class="button-list row">
-                                <div ng-repeat="item in payouts" class="button-item large-3 columns">
-                                    <button ng-click="changPayout(item)" ng-class="{'active': payout === item}" ng-disabled="payout === item || onBetting">item</button>
-                                </div>
-                            </div>
+                            <ul class="button-list">
+                                <li ng-repeat="item in payouts" class="button-item">
+                                    <button ng-click="changPayout(item)" ng-class="{'active': userSetting.Payout === item}" ng-disabled="userSetting.Payout === item || onBetting">{{item}}</button>
+                                </li>
+                            </ul>
                         </div>
                     </fieldset>
                     <div class="row">

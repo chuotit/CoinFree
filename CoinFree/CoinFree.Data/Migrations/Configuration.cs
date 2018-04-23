@@ -19,26 +19,28 @@
             //    new Payout { Value = 1, Order = 1 }
             //    );
 
-            context.UserSettings.AddOrUpdate(
-                new UserSetting
-                {
-                    Name = "Base_2.5",
-                    GameType = "base",
-                    Payout = 2.5,
-                    CoinAddress = "12FW6jacTgqoWfvxkhJXixo2JW5tTryWNk",
-                    BtcBetBase = "0.00000001",
-                    BetSpeed = "slow",
-                    BetMode = 1,
-                    BetProbe = 2,
-                    BtcPlus = "0.00000005",
-                    BetTarget = 2000,
-                    PercentIncreases = 1,
-                    CreateDate = DateTime.Now,
-                    UpdateDate = DateTime.Now,
-                    Status = true
-                }
-                );
-            context.SaveChanges();
+            //context.UserSettings.AddOrUpdate(
+            //    new UserSetting
+            //    {
+            //        Name = "Base_3",
+            //        GameType = "base",
+            //        Payout = 3,
+            //        CoinAddress = "12FW6jacTgqoWfvxkhJXixo2JW5tTryWNk",
+            //        BtcBetBase = "0.00000001",
+            //        BetSpeed = "slow",
+            //        BetMode = 1,
+            //        BetProbe = 5,
+            //        BtcPlus = "0.00000010",
+            //        BetTarget = 2000,
+            //        PercentIncrease = 120,
+            //        IncreaseWhenLost = 1,
+            //        WinLimit = 1,
+            //        CreateDate = DateTime.Now,
+            //        UpdateDate = DateTime.Now,
+            //        Status = true
+            //    }
+            //);
+            //context.SaveChanges();
         }
     }
 }
