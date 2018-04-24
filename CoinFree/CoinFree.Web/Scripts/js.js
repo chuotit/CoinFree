@@ -19,6 +19,7 @@
             $scope.betType = 8;
             $scope.betOnline = true;
             $scope.steps = 1;
+            $scope.enableDeletePayoutMode = false;
             var coinAddress = window.aZa;
             var baseUrl = 'http://localhost:54551';
 
@@ -173,6 +174,25 @@
                 $scope.onBetting = false;
                 $scope.disabledButton = false;
             };
+
+            $scope.deletePayoutMode = function () {
+                $scope.enableDeletePayoutMode = true;
+                console.log($scope.enableDeletePayoutMode);
+            };
+
+            $scope.deletePayout = function (id) {
+                $http({
+                    method: 'POST',
+                    url: baseUrl + '/UserSetting/DeleteUserSetting/?id=' + id
+                }).then(
+                    function successCallback(response) {
+                        console.log(response)
+                    }, function errorCallback(error) {
+                        console.log(error);
+                    }
+                    );
+            };
+
             $scope.changePayout = changePayout;
             function changePayout(payout) {
                 $scope.payout = payout;
