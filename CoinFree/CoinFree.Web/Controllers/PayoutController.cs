@@ -18,7 +18,7 @@ namespace CoinFree.Web.Controllers
         [HttpGet]
         public JsonResult GetPayout(string address)
         {
-            var model = _context.Payouts.OrderBy(x=>x.Order);
+            var model = _context.Payouts.OrderBy(x=>x.Order).Select(x=>x.Value);
             return Json( new {
                 items = model,
                 status = true

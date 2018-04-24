@@ -105,6 +105,10 @@
     <Compile Include="Migrations\201804231752044_UpdateUserSettingTable5.Designer.cs">
       <DependentUpon>201804231752044_UpdateUserSettingTable5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804241852227_UpdateUserSettingTable6.cs" />
+    <Compile Include="Migrations\201804241852227_UpdateUserSettingTable6.Designer.cs">
+      <DependentUpon>201804241852227_UpdateUserSettingTable6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Payout.cs" />
     <Compile Include="Models\User.cs" />
@@ -148,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804231752044_UpdateUserSettingTable5.resx">
       <DependentUpon>201804231752044_UpdateUserSettingTable5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804241852227_UpdateUserSettingTable6.resx">
+      <DependentUpon>201804241852227_UpdateUserSettingTable6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

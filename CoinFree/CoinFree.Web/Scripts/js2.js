@@ -32,7 +32,7 @@
                 }, function errorCallback(error) {
                     $scope.toolActive = false;
                 }
-                );
+            );
             $scope.toolActive = true;
 
 
@@ -181,7 +181,7 @@
             };
 
             $scope.addPayout = function () {
-                $scope.enableAddNewPayout = true;
+                $scope.enableAddNewPayout = !enableAddNewPayout;
                 getAllPayout();
             }
 
@@ -298,7 +298,7 @@
                     }, function errorCallback(error) {
                         console.log(error);
                     }
-                    );
+                );
             }
 
 
