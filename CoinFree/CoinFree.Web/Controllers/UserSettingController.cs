@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using CoinFree.Data;
+using CoinFree.Data.Models;
 
 namespace CoinFree.Web.Controllers
 {
@@ -39,6 +41,76 @@ namespace CoinFree.Web.Controllers
             {
                 userSetting
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult SaveUserSetting(string strUserSetting)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            UserSetting userSetting = serializer.Deserialize<UserSetting>(strUserSetting);
+            bool status = false;
+            var message = string.Empty;
+            if(userSetting.Id == 0)
+            {
+                _context.UserSettings.Add(userSetting);
+                try
+                {
+                    _context.SaveChanges();
+                    status = true;
+                }
+                catch (Exception ex)
+                {
+                    status = false;
+                    message = ex.Message;
+                }
+            } else
+            {
+                var entiry = _context.UserSettings.Find(userSetting.Id);
+                entiry.BetMode = userSetting.BetMode;
+                entiry.BtcBetBase = userSetting.BtcBetBase;
+                entiry.BetTarget = userSetting.BetTarget;
+                entiry.BetSpeed = userSetting.BetSpeed;
+                entiry.BetProbe = userSetting.BetProbe;
+                entiry.BtcPlus = userSetting.BtcPlus;
+                try
+                {
+                    _context.SaveChanges();
+                    status = true;
+                } catch(Exception ex)
+                {
+                    status = false;
+                    message = ex.Message;
+                }
+            }
+            return Json(
+                new
+                {
+                    status = status,
+                    message = message
+                });
+        }
+
+        public JsonResult DeleteUserSetting(int id)
+        {
+            var entity = _context.UserSettings.Find(id);
+            _context.UserSettings.Remove(entity);
+            try
+            {
+                _context.SaveChanges();
+                return Json(new
+                {
+                    status = true,
+                    message = "OK"
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    status = false,
+                    message = ex.Message
+                });
+            }
         }
     }
 }
