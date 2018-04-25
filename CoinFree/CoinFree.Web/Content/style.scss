@@ -147,9 +147,37 @@ input:focus, textarea:focus, select:focus {
         display: inline-block;
         width: 50px;
         margin-left: 5px;
+        vertical-align: top;
+        position: relative;
+
+        .delete-payout {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 15px;
+            height: 15px;
+            background: #2ba6cb;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 13px;
+            padding: 0;
+            text-align: center;
+        }
 
         &:first-child {
             margin-left: 0;
+        }
+    }
+
+    .new-payout {
+        position: absolute;
+        top: 0;
+        right: 18px;
+        width: 50px;
+        height: 19px;
+        select {
+            vertical-align: top;
         }
     }
 
@@ -317,6 +345,7 @@ input:focus, textarea:focus, select:focus {
         -webkit-transition: none;
         -moz-transition: none;
         transition: none;
+        border-radius: 3px;
 
         &:hover, &.active, &.active:hover {
             background: $red-color;
@@ -325,13 +354,17 @@ input:focus, textarea:focus, select:focus {
         }
     }
 
-    .control-button {
+    li.button-item.control-button {
+        width: 17px;
+        float: right;
+
         button {
-            height: 16px;
-            line-height: 16px;
+            height: 17px;
+            line-height: 17px;
             min-height: 0;
             display: block;
             margin-top: 1px;
+
             &:first-child {
                 margin-top: 0;
             }

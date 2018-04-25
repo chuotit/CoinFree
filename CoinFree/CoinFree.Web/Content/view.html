@@ -4,7 +4,7 @@
         <div class="game-mode">
             <ul class="game-mode-list">
                 <li class="mode-item active"><a>Bet cơ bản</a></li>
-                <li class="mode-item disabled"><a>Bet Pro 22222</a></li>
+                <li class="mode-item disabled"><a>Bet Pro</a></li>
             </ul>
         </div>
         <div class="clear"></div>
@@ -55,11 +55,16 @@
                             <ul class="button-list">
                                 <li ng-repeat="item in payouts" class="button-item">
                                     <button ng-click="changePayout(item)" ng-class="{'active': userSetting.Payout === item}" ng-disabled="userSetting.Payout === item || onBetting">{{item}}</button>
-                                    <a ng-click="deletePayout(item)" ng-if="enableDeletePayoutMode" href="#">x</a>
+                                    <a class="delete-payout" ng-click="deletePayout(item)" ng-if="enableDeletePayoutMode" href="#">x</a>
                                 </li>
                                 <li class="button-item control-button">
-                                    <button ng-click="addPayout()" ng-disabled="onBetting">+</button>
-                                    <button ng-click="deletePayoutMode()" ng-disabled="onBetting">x</button>
+                                    <button ng-click="addPayout(enableAddNewPayout)" ng-disabled="onBetting">{{enableAddNewPayout === true?"-":"+"}}</button>
+                                    <button ng-click="deletePayoutMode()" ng-disabled="disableDeletePayout === false || enableDeletePayoutMode === true || onBetting">x</button>
+                                    <div class="new-payout" ng-show="enableAddNewPayout === true && enableDeletePayoutMode === false">
+                                        <select ng-model="addNewPayoutModel" ng-change="savePayout(addNewPayoutModel)">
+                                            <option ng-repeat="item in allPayouts" value="{{item}}">{{item}}</option>
+                                        </select>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -182,7 +187,7 @@
                             </div>
                         </div>
                         <div class="large-2 small-2 columns controls">
-                            <button ng-disabled="onBetting || toolActive === false" ng-click="startBet()" class="bet-start">Bắt đầu</button>
+                            <button ng-disabled="toolActive === false" ng-click="startBet(onBetting)" class="bet-start">{{onBetting === true?"Tạm dừng":"Bắt đầu"}}</button>
                         </div>
                     </div>
                 </div>

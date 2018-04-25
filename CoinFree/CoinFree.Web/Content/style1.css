@@ -102,7 +102,22 @@ body {
   .pro-bet .button-item {
     display: inline-block;
     width: 50px;
-    margin-left: 5px; }
+    margin-left: 5px;
+    vertical-align: top;
+    position: relative; }
+    .pro-bet .button-item .delete-payout {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 15px;
+      height: 15px;
+      background: #2ba6cb;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 13px;
+      padding: 0;
+      text-align: center; }
     .pro-bet .button-item:first-child {
       margin-left: 0; }
   .pro-bet .right-content {
@@ -230,6 +245,17 @@ body {
       background: #ed6454;
       opacity: 1;
       color: #fff; }
+  .pro-bet li.button-item.control-button {
+    width: 17px;
+    float: right; }
+    .pro-bet li.button-item.control-button button {
+      height: 17px;
+      line-height: 17px;
+      min-height: 0;
+      display: block;
+      margin-top: 1px; }
+      .pro-bet li.button-item.control-button button:first-child {
+        margin-top: 0; }
   .pro-bet input[type="text"],
   .pro-bet input[type="password"],
   .pro-bet input[type="date"],

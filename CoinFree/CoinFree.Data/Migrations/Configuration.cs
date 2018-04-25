@@ -19,23 +19,23 @@
             //    new Payout { Value = 1, Order = 1 }
             //    );
 
-            context.Users.AddOrUpdate(
-                new User
-                {
-                    FullName = "CongVT.BTC",
-                    Email = "congvt.btc@gmail.com",
-                    UserID = "13402140",
-                    WebAddress = "https://freebitco.in",
-                    CoinAddress = "12FW6jacTgqoWfvxkhJXixo2JW5tTryWNk",
-                    CoinType = "BTC",
-                    CoinAarned = "0.00000000",
-                    ReferID = "9719342",
-                    Note = "",
-                    CreateDate = DateTime.Now,
-                    UpdateDate = DateTime.Now,
-                    Status = true
-                }
-                );
+            //context.Users.AddOrUpdate(
+            //    new User
+            //    {
+            //        FullName = "CongVT.BTC",
+            //        Email = "congvt.btc@gmail.com",
+            //        UserID = "13402140",
+            //        WebAddress = "https://freebitco.in",
+            //        CoinAddress = "12FW6jacTgqoWfvxkhJXixo2JW5tTryWNk",
+            //        CoinType = "BTC",
+            //        CoinAarned = "0.00000000",
+            //        ReferID = "9719342",
+            //        Note = "",
+            //        CreateDate = DateTime.Now,
+            //        UpdateDate = DateTime.Now,
+            //        Status = true
+            //    }
+            //    );
 
             //context.UserSettings.AddOrUpdate(
             //    new UserSetting

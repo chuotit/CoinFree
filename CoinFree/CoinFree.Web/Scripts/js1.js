@@ -16,7 +16,7 @@
             $scope.betMaxLose = $scope.betMaxLoseAllowed = $scope.betCount = 0;
             $scope.btcMaxLoseAllowed = '0.00000001';
             $scope.betHiFlg = true;
-            $scope.betType = 8;
+            $scope.betType = 1;
             $scope.betOnline = true;
             $scope.steps = 1;
             $scope.enableDeletePayoutMode = false;
@@ -32,7 +32,7 @@
                 }, function errorCallback(error) {
                     $scope.toolActive = false;
                 }
-                );
+            );
             $scope.toolActive = true;
 
 
@@ -105,11 +105,34 @@
                                     $scope.btcMaxLoseAllowed = $scope.betList[$scope.onBigBetCount].btcBet > $scope.btcMaxLoseAllowed ? $scope.betList[$scope.onBigBetCount].btcBet : $scope.btcMaxLoseAllowed;
                                     $scope.betMaxLose = $scope.betMaxLose > loseCount ? $scope.betMaxLose : loseCount;
                                 }
+
+                                if ($scope.betType === 1) {
+                                    $scope.onBetting = false;
+                                    $scope.onBigBetCount = 0;
+                                    $scope.btcForBet = $scope.btcBase;
+                                }
+
                                 loseCount = 0;
                             } else {
                                 loseCount++;
 
                                 generalList = getGeneralist(winCount, generalList, 'win-item');
+
+                                if ($scope.betType === 1) {
+                                    if (loseCount >= $scope.userSetting.BetProbe) {
+                                        $scope.onBetting = true;
+                                        $scope.onBigBetCount++;
+                                        $scope.btcForBet = $scope.onBigBetCount >= $scope.betLoseAllowed ? $scope.betList[0].btcBet : $scope.betList[$scope.onBigBetCount - 1].btcBet;
+                                        $scope.betItemIndex = $scope.onBigBetCount >= $scope.betLoseAllowed ? 0 : $scope.onBigBetCount;
+                                        if ($scope.betItemIndex >= 3) {
+                                            document.getElementById('line' + ($scope.betItemIndex - 1)).scrollIntoView(true);
+                                        }
+                                    } else {
+                                        $scope.onBetting = false;
+                                        $scope.onBigBetCount = 0;
+                                        $scope.btcForBet = $scope.btcBase;
+                                    }
+                                }
 
                                 if ($scope.betType === 8) {
                                     if ($scope.bigBetFlg === false && loseCount === 1) {
@@ -144,7 +167,7 @@
                                 winCount = 0;
                             }
                             // $scope.betSpeed = getBetSpeedAutoPlay(loseCount);
-                            // console.log(loseCount !== 0 ? 'loseCount:' + loseCount : "winCount:" + winCount, '$scope.bigBetFlg' + $scope.bigBetFlg, "$scope.btcForBet:" + $scope.btcForBet, "$scope.onBigBetCount:" + $scope.onBigBetCount);
+                             console.log(loseCount !== 0 ? 'loseCount:' + loseCount : "winCount:" + winCount, '$scope.bigBetFlg' + $scope.bigBetFlg, "$scope.btcForBet:" + $scope.btcForBet, "$scope.onBigBetCount:" + $scope.onBigBetCount);
                             // $timeout(function() {
                             $scope.disabledButton = false;
                             $timeout(function () {
@@ -160,19 +183,15 @@
                 }
             });
 
-            $scope.startBet = function () {
-                $scope.onBetting = true;
-                $scope.disabledButton = false;
-                $timeout(function () {
-                    if ($scope.toolActive === true) {
-                        $('#double_your_btc_bet_' + betButton + '_button').trigger('click');
-                    }
-                }, $scope.betSpeed);
-            };
-
-            $scope.pauseBet = function () {
-                $scope.onBetting = false;
-                $scope.disabledButton = false;
+            $scope.startBet = function (onBetting) {
+                $scope.onBetting = !onBetting;
+                if ($scope.onBetting === true) {
+                    $timeout(function () {
+                        if ($scope.toolActive === true) {
+                            $('#double_your_btc_bet_' + betButton + '_button').trigger('click');
+                        }
+                    }, $scope.betSpeed);
+                }
             };
 
             $scope.deletePayoutMode = function () {
@@ -180,28 +199,31 @@
                 console.log($scope.enableDeletePayoutMode);
             };
 
-            $scope.addPayout = function () {
-                $scope.enableAddNewPayout = true;
+            $scope.addPayout = function (enableAddNewPayout) {
+                $scope.enableAddNewPayout = !enableAddNewPayout;
+                $scope.enableDeletePayoutMode = false;
                 getAllPayout();
             }
 
             $scope.savePayout = function (payoutValue) {
+                if (payoutValue === null) return;
+
                 var userSetting = {
                     Id: 0,
-                    Name = 'Base_' + payoutValue,
+                    Name : 'Base_' + payoutValue,
                     GameType: 'Base',
-                    Payout = parseInt(payoutValue),
-                    CoinAddress = "12FW6jacTgqoWfvxkhJXixo2JW5tTryWNk",
-                    BtcBetBase = "0.00000001",
-                    BetSpeed = "slow",
-                    BetMode = 1,
-                    BetProbe = 1,
-                    BtcPlus = "0.00000001",
-                    BetTarget = 2000,
-                    PercentIncrease = 100,
-                    IncreaseWhenLost = 1,
-                    WinLimit = 1,
-                    Status = true
+                    Payout: payoutValue,
+                    CoinAddress : "12FW6jacTgqoWfvxkhJXixo2JW5tTryWNk",
+                    BtcBetBase : "0.00000001",
+                    BetSpeed : "slow",
+                    BetMode : 1,
+                    BetProbe : 1,
+                    BtcPlus : "0.00000001",
+                    BetTarget : 2000,
+                    PercentIncrease : 100,
+                    IncreaseWhenLost : 1,
+                    WinLimit : 1,
+                    Status : true
                 };
                 var conf = confirm("Bạn có muốn thêm payout này?");
                 if (conf == true) {
@@ -211,13 +233,13 @@
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     }).then(
                         function successCallback(response) {
-                            getPayouts();
+                            getSettingPayout(userSetting.Payout);
                         }, function errorCallback(error) {
                             console.log(error);
                         }
                         );
                 } else {
-                    console.log("Yêu cầu xóa payout đã hủy.");
+                    console.log("Yêu cầu thêm payout đã hủy.");
                 }
             };
 
@@ -229,7 +251,7 @@
                         url: baseUrl + '/UserSetting/DeleteUserSetting/?Payout=' + payout
                     }).then(
                         function successCallback(response) {
-                            getPayouts();
+                            getSettingPayout();
                         }, function errorCallback(error) {
                             console.log(error);
                         }
@@ -245,8 +267,9 @@
                     url: baseUrl + '/payout/getpayout?address=' + coinAddress
                 }).then(
                     function successCallback(response) {
-                        $scope.allPayouts = response.data.items;
-                        console.log($scope.allPayouts);
+                        $scope.allPayouts = $.grep(response.data.items, function (value) {
+                            return $.inArray(value, $scope.payouts) < 0;
+                        });
                     }, function errorCallback(error) {
                         console.log(error);
                     }
@@ -281,7 +304,7 @@
                 $scope.btcBases = btcBases;
             }
 
-            function getSettingPayout() {
+            function getSettingPayout(payout) {
                 $http({
                     method: 'GET',
                     url: baseUrl + '/UserSetting/GetPayout/?gameType=base&coinAddress=' + coinAddress
@@ -293,12 +316,13 @@
                         } else {
                             $scope.disableDeletePayout = true;
                         }
-                        var payoutDefault = $scope.payouts[0];
+                        var payoutDefault = payout || $scope.payouts[0];
                         changePayout(payoutDefault);
+                        $scope.enableAddNewPayout = false;
                     }, function errorCallback(error) {
                         console.log(error);
                     }
-                    );
+                );
             }
 
 

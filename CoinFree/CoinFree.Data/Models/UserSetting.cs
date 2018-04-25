@@ -44,9 +44,9 @@ namespace CoinFree.Data.Models
 
         public int WinLimit { set; get; }
 
-        public DateTime CreateDate { set; get; }
+        public DateTime? CreateDate { set; get; }
 
-        public DateTime UpdateDate { set; get; }
+        public DateTime? UpdateDate { set; get; }
 
         public bool Status { set; get; }
     }
