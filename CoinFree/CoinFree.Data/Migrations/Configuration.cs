@@ -37,6 +37,21 @@
             //    }
             //    );
 
+            //context.Payouts.AddOrUpdate(
+            //    new Payout { Value = 1, Order = 1 },
+            //    new Payout { Value = 1.5, Order = 2 },
+            //    new Payout { Value = 2, Order = 3 },
+            //    new Payout { Value = 2.5, Order = 4 },
+            //    new Payout { Value = 3, Order = 5 },
+            //    new Payout { Value = 4, Order = 6 },
+            //    new Payout { Value = 5, Order = 7 },
+            //    new Payout { Value = 6, Order = 8 },
+            //    new Payout { Value = 7, Order = 9 },
+            //    new Payout { Value = 8, Order = 10 },
+            //    new Payout { Value = 9, Order = 11 },
+            //    new Payout { Value = 10, Order = 12 }
+            //    );
+
             //context.UserSettings.AddOrUpdate(
             //    new UserSetting
             //    {
