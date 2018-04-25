@@ -22,6 +22,7 @@
             $scope.enableDeletePayoutMode = false;
             var coinAddress = window.aZa;
             var baseUrl = 'http://localhost:54551';
+            $scope.onBetting = false;
 
             $http({
                 method: 'GET',
@@ -107,9 +108,10 @@
                                 }
 
                                 if ($scope.betType === 1) {
-                                    $scope.onBetting = false;
+                                    $scope.bigBetFlg = false;
                                     $scope.onBigBetCount = 0;
                                     $scope.btcForBet = $scope.btcBase;
+                                    document.getElementById('line1').scrollIntoView(true);
                                 }
 
                                 loseCount = 0;
@@ -120,7 +122,7 @@
 
                                 if ($scope.betType === 1) {
                                     if (loseCount >= $scope.userSetting.BetProbe) {
-                                        $scope.onBetting = true;
+                                        $scope.bigBetFlg = true;
                                         $scope.onBigBetCount++;
                                         $scope.btcForBet = $scope.onBigBetCount >= $scope.betLoseAllowed ? $scope.betList[0].btcBet : $scope.betList[$scope.onBigBetCount - 1].btcBet;
                                         $scope.betItemIndex = $scope.onBigBetCount >= $scope.betLoseAllowed ? 0 : $scope.onBigBetCount;
@@ -128,10 +130,12 @@
                                             document.getElementById('line' + ($scope.betItemIndex - 1)).scrollIntoView(true);
                                         }
                                     } else {
-                                        $scope.onBetting = false;
+                                        $scope.bigBetFlg = false;
                                         $scope.onBigBetCount = 0;
                                         $scope.btcForBet = $scope.btcBase;
+                                        document.getElementById('line1').scrollIntoView(true);
                                     }
+                                    $scope.betSpeed = getBetSpeedAutoPlay(loseCount);
                                 }
 
                                 if ($scope.betType === 8) {
@@ -167,7 +171,7 @@
                                 winCount = 0;
                             }
                             // $scope.betSpeed = getBetSpeedAutoPlay(loseCount);
-                             console.log(loseCount !== 0 ? 'loseCount:' + loseCount : "winCount:" + winCount, '$scope.bigBetFlg' + $scope.bigBetFlg, "$scope.btcForBet:" + $scope.btcForBet, "$scope.onBigBetCount:" + $scope.onBigBetCount);
+                             //console.log(loseCount !== 0 ? 'loseCount:' + loseCount : "winCount:" + winCount, '$scope.bigBetFlg' + $scope.bigBetFlg, "$scope.btcForBet:" + $scope.btcForBet, "$scope.onBigBetCount:" + $scope.onBigBetCount);
                             // $timeout(function() {
                             $scope.disabledButton = false;
                             $timeout(function () {
@@ -184,14 +188,14 @@
             });
 
             $scope.startBet = function (onBetting) {
-                $scope.onBetting = !onBetting;
-                if ($scope.onBetting === true) {
+                if ($scope.onBetting === false) {
                     $timeout(function () {
                         if ($scope.toolActive === true) {
                             $('#double_your_btc_bet_' + betButton + '_button').trigger('click');
                         }
                     }, $scope.betSpeed);
                 }
+                $scope.onBetting = !onBetting;
             };
 
             $scope.deletePayoutMode = function () {
