@@ -58,10 +58,10 @@
                                     <a class="delete-payout" ng-click="deletePayout(item.Id)" ng-if="enableDeletePayoutMode" href="#">x</a>
                                 </li>
                                 <li class="button-item control-button">
-                                    <button ng-click="addPayout(enableAddNewPayout)" ng-disabled="onBetting">{{enableAddNewPayout === true?"-":"+"}}</button>
+                                    <button ng-click="addPayout(enableAddNewPayout)" ng-disabled="onBetting || payoutArr.length === 8">{{enableAddNewPayout === true?"-":"+"}}</button>
                                     <button ng-click="deletePayoutMode()" ng-disabled="disableDeletePayout === false || enableDeletePayoutMode === true || onBetting">x</button>
                                     <div class="new-payout" ng-show="enableAddNewPayout === true && enableDeletePayoutMode === false">
-                                        <select ng-model="addNewPayoutModel" ng-change="savePayout(addNewPayoutModel)">
+                                        <select ng-model="addNewPayoutModel" ng-change="savePayout()">
                                             <option ng-repeat="item in allPayouts" value="{{item}}">{{item}}</option>
                                         </select>
                                     </div>
