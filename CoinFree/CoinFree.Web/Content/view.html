@@ -54,8 +54,8 @@
                         <div class="group">
                             <ul class="button-list">
                                 <li ng-repeat="item in payouts" class="button-item">
-                                    <button ng-click="changePayout(item)" ng-class="{'active': userSetting.Payout === item}" ng-disabled="userSetting.Payout === item || onBetting">{{item}}</button>
-                                    <a class="delete-payout" ng-click="deletePayout(item)" ng-if="enableDeletePayoutMode" href="#">x</a>
+                                    <button ng-click="changePayout($index)" ng-class="{'active': userSetting.Payout === item.Payout}" ng-disabled="userSetting.Payout === item.Payout || onBetting">{{item.Payout}}</button>
+                                    <a class="delete-payout" ng-click="deletePayout(item.Id)" ng-if="enableDeletePayoutMode" href="#">x</a>
                                 </li>
                                 <li class="button-item control-button">
                                     <button ng-click="addPayout(enableAddNewPayout)" ng-disabled="onBetting">{{enableAddNewPayout === true?"-":"+"}}</button>

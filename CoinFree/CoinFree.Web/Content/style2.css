@@ -248,7 +248,8 @@ body {
     box-shadow: none;
     -webkit-transition: none;
     -moz-transition: none;
-    transition: none; }
+    transition: none;
+    border-radius: 3px; }
     .pro-bet button:hover, .pro-bet button.active, .pro-bet button.active:hover {
       background: #ed6454;
       opacity: 1;

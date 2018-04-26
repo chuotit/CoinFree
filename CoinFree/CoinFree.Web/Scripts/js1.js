@@ -112,6 +112,10 @@
                                     $scope.onBigBetCount = 0;
                                     $scope.btcForBet = $scope.btcBase;
                                     document.getElementById('line1').scrollIntoView(true);
+
+                                    $scope.payoutIndex = $scope.payout < $scope.userSetting.length - 1 ? $scope.payoutIndex + 1 : 0;
+                                    $scope.userSetting = $scope.payouts[$scope.payoutIndex];
+                                    $scope.payout = $scope.userSetting.Payout;
                                 }
 
                                 loseCount = 0;
@@ -237,7 +241,7 @@
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     }).then(
                         function successCallback(response) {
-                            getSettingPayout(userSetting.Payout);
+                            getSettingPayout(-1);
                         }, function errorCallback(error) {
                             console.log(error);
                         }
@@ -247,12 +251,12 @@
                 }
             };
 
-            $scope.deletePayout = function (payout) {
+            $scope.deletePayout = function (id) {
                 var conf = confirm("Bạn có muốn xóa payout này?");
                 if (conf == true) {
                     $http({
                         method: 'POST',
-                        url: baseUrl + '/UserSetting/DeleteUserSetting/?Payout=' + payout
+                        url: baseUrl + '/UserSetting/DeleteUserSetting/?id=' + id
                     }).then(
                         function successCallback(response) {
                             getSettingPayout();
@@ -308,20 +312,21 @@
                 $scope.btcBases = btcBases;
             }
 
-            function getSettingPayout(payout) {
+            function getSettingPayout(index) {
                 $http({
                     method: 'GET',
                     url: baseUrl + '/UserSetting/GetPayout/?gameType=base&coinAddress=' + coinAddress
                 }).then(
                     function successCallback(response) {
                         $scope.payouts = response.data.payoutList;
+                        console.log($scope.payouts);
                         if ($scope.payouts.length === 1) {
                             $scope.disableDeletePayout = false;
                         } else {
                             $scope.disableDeletePayout = true;
                         }
-                        var payoutDefault = payout || $scope.payouts[0];
-                        changePayout(payoutDefault);
+                        var index = index === -1 ? $scope.payouts.length : index || 0;
+                        changePayout(index);
                         $scope.enableAddNewPayout = false;
                     }, function errorCallback(error) {
                         console.log(error);
@@ -331,24 +336,33 @@
 
 
             $scope.changePayout = changePayout;
-            function changePayout(payout) {
-                $scope.payout = payout;
-                $http({
-                    method: 'GET',
-                    url: baseUrl + '/UserSetting/GetSetting/?gameType=base&payout=' + payout + '&coinAddress=' + coinAddress
-                }).then(
-                    function successCallback(response) {
-                        $scope.enableDeletePayoutMode = false;
-                        $scope.userSetting = response.data.userSetting[0];
-                        $scope.betList = updateBetList(0);
-                        $scope.betAllowed = $scope.betList.slice(-1)[0];
-                        $scope.betLoseAllowed = $scope.betList.slice(-2)[0].index;
-                        $scope.btcLoseAllowed = $scope.betList[$scope.betLoseAllowed - 1].btcLose;
-                        $scope.btcRemain = $scope.betList[$scope.betLoseAllowed - 1].btcRemain;
-                    }, function errorCallback(error) {
-                        console.log(error);
-                    }
-                    );
+            function changePayout(index) {
+                $scope.userSetting = $scope.payouts[index];
+                $scope.payoutIndex = $scope.userSetting.Id;
+                $scope.payout = $scope.userSetting.Payout;
+                $scope.enableDeletePayoutMode = false;
+                console.log($scope.userSetting);
+                $scope.betList = updateBetList(0);
+                $scope.betAllowed = $scope.betList.slice(-1)[0];
+                $scope.betLoseAllowed = $scope.betList.slice(-2)[0].index;
+                $scope.btcLoseAllowed = $scope.betList[$scope.betLoseAllowed - 1].btcLose;
+                $scope.btcRemain = $scope.betList[$scope.betLoseAllowed - 1].btcRemain;
+                //$http({
+                //    method: 'GET',
+                //    url: baseUrl + '/UserSetting/GetSetting/?gameType=base&payout=' + payout + '&coinAddress=' + coinAddress
+                //}).then(
+                //    function successCallback(response) {
+                //        $scope.enableDeletePayoutMode = false;
+                //        $scope.userSetting = response.data.userSetting[0];
+                //        $scope.betList = updateBetList(0);
+                //        $scope.betAllowed = $scope.betList.slice(-1)[0];
+                //        $scope.betLoseAllowed = $scope.betList.slice(-2)[0].index;
+                //        $scope.btcLoseAllowed = $scope.betList[$scope.betLoseAllowed - 1].btcLose;
+                //        $scope.btcRemain = $scope.betList[$scope.betLoseAllowed - 1].btcRemain;
+                //    }, function errorCallback(error) {
+                //        console.log(error);
+                //    }
+                //    );
             };
 
             function getBetPlacings(betPlacingDefault) {
