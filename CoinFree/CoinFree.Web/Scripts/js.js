@@ -108,14 +108,15 @@
                                 }
 
                                 if ($scope.betType === 1) {
-                                    $scope.bigBetFlg = false;
                                     $scope.onBigBetCount = 0;
                                     $scope.btcForBet = $scope.btcBase;
                                     document.getElementById('line1').scrollIntoView(true);
-
-                                    $scope.payoutIndex = $scope.payoutIndex < $scope.payouts.length - 1 ? $scope.payoutIndex + 1 : 0;
-                                    $scope.userSetting = $scope.payouts[$scope.payoutIndex];
-                                    $scope.payout = $scope.userSetting.Payout;
+                                    if ($scope.bigBetFlg === true) {
+                                        $scope.payoutIndex = $scope.payoutIndex < $scope.payouts.length - 1 ? $scope.payoutIndex + 1 : 0;
+                                        $scope.userSetting = $scope.payouts[$scope.payoutIndex];
+                                        $scope.payout = $scope.userSetting.Payout;
+                                    }
+                                    $scope.bigBetFlg = false;
                                 }
 
                                 loseCount = 0;

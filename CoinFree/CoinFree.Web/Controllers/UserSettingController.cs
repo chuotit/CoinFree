@@ -27,8 +27,10 @@ namespace CoinFree.Web.Controllers
         public JsonResult GetPayout (string gameType, string coinAddress)
         {
             var payoutList = _context.UserSettings.Where(x=>x.GameType == gameType && x.CoinAddress == coinAddress);
+            var payoutArr = payoutList.Select(x => x.Payout);
             return Json(new
             {
+                payoutArr,
                 payoutList
             }, JsonRequestBehavior.AllowGet);
         }
@@ -67,12 +69,17 @@ namespace CoinFree.Web.Controllers
             } else
             {
                 var entiry = _context.UserSettings.Find(userSetting.Id);
-                entiry.BetMode = userSetting.BetMode;
+                entiry.Name = userSetting.Name;
+                entiry.GameType = userSetting.GameType;
                 entiry.BtcBetBase = userSetting.BtcBetBase;
-                entiry.BetTarget = userSetting.BetTarget;
                 entiry.BetSpeed = userSetting.BetSpeed;
+                entiry.BetMode = userSetting.BetMode;
                 entiry.BetProbe = userSetting.BetProbe;
                 entiry.BtcPlus = userSetting.BtcPlus;
+                entiry.BetTarget = userSetting.BetTarget;
+                entiry.PercentIncrease = userSetting.PercentIncrease;
+                entiry.IncreaseWhenLost = userSetting.IncreaseWhenLost;
+                entiry.WinLimit = userSetting.WinLimit;
                 try
                 {
                     _context.SaveChanges();
