@@ -26,7 +26,7 @@ namespace CoinFree.Web.Controllers
         [HttpGet]
         public JsonResult GetPayout (string gameType, string coinAddress)
         {
-            var payoutList = _context.UserSettings.Where(x=>x.GameType == gameType && x.CoinAddress == coinAddress).Select( x => x.Payout);
+            var payoutList = _context.UserSettings.Where(x=>x.GameType == gameType && x.CoinAddress == coinAddress);
             return Json(new
             {
                 payoutList
@@ -91,10 +91,9 @@ namespace CoinFree.Web.Controllers
                 });
         }
 
-        public JsonResult DeleteUserSetting(double payout)
+        public JsonResult DeleteUserSetting(int id)
         {
-            var payoutId = _context.UserSettings.FirstOrDefault(x => x.Payout == payout).Id;
-            var entity = _context.UserSettings.Find(payoutId);
+            var entity = _context.UserSettings.Find(id);
             _context.UserSettings.Remove(entity);
             try
             {
