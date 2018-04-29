@@ -143,6 +143,34 @@ input:focus, textarea:focus, select:focus {
         }
     }
 
+    .payout-setting {
+        .payout-button {
+            overflow: hidden;
+            &:hover, &.active, &.active:hover {
+                &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: -5px;
+                    left: 50%;
+                    width: 8px;
+                    height: 8px;
+                    background: #fff;
+                    transform: rotate(45deg);
+                    -webkit-transform: rotate(45deg);
+                    -moz-transform: rotate(45deg);
+                    -o-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                    margin-left: -3px;
+                }
+            }
+        }
+    }
+
+    .no-payout {
+        float: left;
+        color: #f00;
+    }
+
     .button-item {
         display: inline-block;
         width: 50px;
@@ -176,6 +204,7 @@ input:focus, textarea:focus, select:focus {
         right: 18px;
         width: 50px;
         height: 19px;
+
         select {
             vertical-align: top;
         }

@@ -99,6 +99,25 @@ body {
       margin-left: 45px; }
       .pro-bet .setting-list .setting-item:first-child {
         margin-left: 0; }
+  .pro-bet .payout-setting .payout-button {
+    overflow: hidden; }
+    .pro-bet .payout-setting .payout-button:hover::before, .pro-bet .payout-setting .payout-button.active::before, .pro-bet .payout-setting .payout-button.active:hover::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      margin-left: -3px; }
+  .pro-bet .no-payout {
+    float: left;
+    color: #f00; }
   .pro-bet .button-item {
     display: inline-block;
     width: 50px;
